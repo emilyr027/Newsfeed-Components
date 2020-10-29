@@ -22,20 +22,22 @@ let menuItems = [
 
 function menuMaker(arr) {
   const menuGroup = document.createElement('div');
+  menuGroup.classList.add('menu');
   const menuList = document.createElement('ul');
-
   menuGroup.appendChild(menuList);
+  
+  const header = document.querySelector('.header');
 
-  menuGroup.className = "menu";
-  menuGroup.className = 'ul';
 
-  arr.forEach(item => {
+  arr.forEach((item) => {
+    const text = document.createTextNode(item);
     const createdItem = document.createElement('li');
-
+    createdItem.appendChild(text);
+    // createdItem.textContent = item;
     menuList.appendChild(createdItem);
-    createdItem.className = 'li';
-    createdItem.textContent = item;
-  })
+  });
+
+  header.appendChild(menuGroup);
 
   const menuButt = document.querySelector('.menu-button');
 
@@ -44,9 +46,17 @@ function menuMaker(arr) {
   })
 
   return menuGroup;
-}
 
-(document.querySelector('.header')).appendChild(menuMaker(menuItems));
+};
+
+menuMaker(menuItems);
+
+// let createNewMenu = menuMaker(menuItems);
+// const header2 = document.querySelector('header');
+// header2.appendChild(createNewMenu);
+// console.log(createNewMenu);
+
+// (document.querySelector('.header')).appendChild(menuMaker(menuItems));
 
   // Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array.
   // Add those items to the <ul>
@@ -58,5 +68,3 @@ function menuMaker(arr) {
   // Step 5: Don't forget to return your div.menu.
 
   // Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
-
-
